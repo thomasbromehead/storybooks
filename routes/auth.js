@@ -4,4 +4,11 @@ const passport = require('passport');
 
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
+router.get('/google/callback', //make sure to have \/google
+  passport.authenticate('google', { failureRedirect: '/' }),
+ (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect('/dashboard');
+  });
+
 module.exports = router;
