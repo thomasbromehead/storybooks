@@ -8,12 +8,27 @@ const {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
 // Stories Index
 router.get('/', (req, res) => {
    Story.find({status: 'public'})
+      .populate('user') //populates user with all fields from User collection
       .then(stories => {
          res.render('stories/index', {
             stories: stories
          });
       });
 });
+
+//Show Single Story
+router.get('/show/:id', (req, res) => {
+   Story.findOne({
+      _id: req.params.id
+   })
+   .populate('user')
+   .then(story => {
+      res.render('stories/show', {
+         story: story
+      });
+   });
+});
+
 
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
@@ -45,5 +60,7 @@ router.post('/', (req, res) => {
       res.redirect(`/stories/show/${story.id}`);
     });
 });
+
+
 
 module.exports = router;
