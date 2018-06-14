@@ -13,37 +13,36 @@ const StorySchema = new Schema({
   },
   status: {
     type: String,
-    default: 'public'
+    default:'public'
   },
   allowComments: {
     type: Boolean,
-    default: true
+    default:true
   },
-  comments: {
+  comments: [{
     commentBody: {
-       type: String,
-       required: true
+      type: String,
+      required: true
     },
-    commentDate: {
-       type: Date,
-       default: Date.now
+    commentDate:{
+      type: Date,
+      default: Date.now
     },
-    commentUser: {
-       type: Schema.Types.ObjectID,
-       ref: 'users'
+    commentUser:{
+      type: Schema.Types.ObjectId,
+      ref:'users'
     }
-  },
-  user: {
+  }],
+  user:{
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref:'users'
   },
-  date: {
+  date:{
     type: Date,
     default: Date.now
   }
-
 });
 
 // Create collection and add schema
+//3rd parameters add a stories name, default would have been Story
 mongoose.model('stories', StorySchema, 'stories');
-  //3rd parameter is to specify a collection name,  by default it would have been Story.
