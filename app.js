@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
-
-
 // Load Models
 require('./models/User');
 require('./models/Story');
@@ -24,11 +22,12 @@ const stories = require('./routes/stories');
 // Load Keys
 const keys = require('./config/keys');
 
-//Handlebar Helpers
-const { 
+// Handlebars Helpers
+const {
   truncate,
   stripTags,
-  formatDate
+  formatDate,
+  select
 } = require('./helpers/hbs');
 
 // Map global promises
@@ -45,13 +44,13 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
   helpers: {
     truncate: truncate,
     stripTags: stripTags,
-    formatDate: formatDate
+    formatDate:formatDate,
+    select:select
   },
   defaultLayout:'main'
 }));

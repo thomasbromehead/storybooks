@@ -44,5 +44,4 @@ const StorySchema = new Schema({
 });
 
 // Create collection and add schema
-//3rd parameters add a stories name, default would have been Story
 mongoose.model('stories', StorySchema, 'stories');

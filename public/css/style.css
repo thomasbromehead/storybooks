@@ -16,8 +16,8 @@ footer{
   margin-top:20px;
 }
 
-.story-text {
-  height: 200px;
+.story-text{
+  height:120px;
 }
 
 .dash-status{
@@ -25,5 +25,5 @@ footer{
 }
 
 #delete-form{
-  display: inline;
+  display:inline;
 }
